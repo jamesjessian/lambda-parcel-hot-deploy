@@ -1,0 +1,4 @@
+.serverless
+.cache
+.build
+node_modules

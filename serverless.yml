@@ -1,0 +1,18 @@
+service: lambda-parcel-hot-deploy
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+# ==================================================================================================
+
+functions:
+  getTime:
+    handler: lambdaHandlers.getTime
+    events:
+      - http:
+          method: GET
+          path: time
+          cors:
+            origins:
+              - '*'

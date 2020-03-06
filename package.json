@@ -1,0 +1,16 @@
+{
+	"name": "lambda-parcel-hot-deploy",
+	"version": "1.0.0",
+	"description": "This is a proof-of-concept for packaging a set of AWS Lambda services using Parcel JS which are reloaded at runtime.",
+	"main": "index.js",
+	"scripts": {
+		"deploy": "serverless deploy"
+	},
+	"keywords": [],
+	"author": "@jamesjessian",
+	"license": "MIT",
+	"dependencies": {
+		"try-json": "^1.0.1",
+		"moment": "^2.24.0"
+	}
+}
