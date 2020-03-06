@@ -4,6 +4,34 @@ provider:
   name: aws
   runtime: nodejs10.x
 
+  iamRoleStatements:
+    # Grant privilege to access S3 bucket
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+      # ARN for bucket followed by '/*', to specify all objects within bucket
+      Resource: !Join ['', [!GetAtt HotSourceBucket.Arn, '/*']]
+
+  environment:
+    # Get the name of the bucket we have created (e.g. "lambda-parcel-hot-deploy-dev-hotsourcebucket-xxxxxxxxxx")
+    BUCKET_NAME: !Ref HotSourceBucket
+    # Get the ARN for the bucket that we have created (e.g. "arn:aws:s3:::lambda-parcel-hot-deploy-dev-hotsourcebucket-xxxxxxxxxx")
+    BUCKET_ARN: !GetAtt HotSourceBucket.Arn
+
+# ==================================================================================================
+
+package:
+  exclude: # Specify the directories and files which should be excluded in the deployment package
+    - .cache/**
+    - dist/**
+
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: .build/stack.json # toml, yaml, yml, and json format is available
+
 # ==================================================================================================
 
 functions:
@@ -16,3 +44,16 @@ functions:
           cors:
             origins:
               - '*'
+
+# ==================================================================================================
+
+resources:
+  Resources:
+    HotSourceBucket:
+      Type: AWS::S3::Bucket
+
+  # Output the name of our new bucket. We use serverless-stack-output to export this out to .build/stack.json
+  Outputs:
+    HotSourceBucketName:
+      Value:
+        Ref: HotSourceBucket

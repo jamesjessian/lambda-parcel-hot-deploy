@@ -2,15 +2,25 @@
 	"name": "lambda-parcel-hot-deploy",
 	"version": "1.0.0",
 	"description": "This is a proof-of-concept for packaging a set of AWS Lambda services using Parcel JS which are reloaded at runtime.",
-	"main": "index.js",
-	"scripts": {
-		"deploy": "serverless deploy"
-	},
+	"main": "lambdaHandlers.js",
 	"keywords": [],
 	"author": "@jamesjessian",
 	"license": "MIT",
 	"dependencies": {
+		"node-file-eval": "^1.0.0",
 		"try-json": "^1.0.1",
 		"moment": "^2.24.0"
+	},
+	"devDependencies": {
+		"aws-sdk": "^2.634.0",
+		"parcel": "^1.12.4",
+		"serverless": "^1.65.0",
+		"serverless-stack-output": "^0.2.3"
+	},
+	"scripts": {
+		"build": "parcel build routes/index.js --target node --bundle-node-modules --no-source-maps",
+		"deploy": "serverless deploy",
+		"deploy:hot": "npm run build && node utils/uploadSource",
+		"remove": "rm -rf dist/* && node utils/uploadSource && serverless remove"
 	}
 }
