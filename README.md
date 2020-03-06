@@ -14,7 +14,7 @@ The excellent Parcel bundler offers the ability to bundle a package of code (inc
 
 This probably isn't something you want to use in a production environment, as it will add to your request/response and cold-startup time (although a lot of this could probably be mitigated into insignificance) and it relies on one big eval() statement in there somewhere, which is generally considered dodgy.
 
-But it does work.
+But it does work. Full article: https://medium.com/@jamesjessian/faster-deployment-aws-lambda-hot-deploy-with-parcel-51e2f378b8de
 
 ## Build
 
