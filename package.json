@@ -12,7 +12,7 @@
 		"moment": "^2.24.0"
 	},
 	"devDependencies": {
-		"aws-sdk": "^2.634.0",
+		"aws-sdk": "^2.814.0",
 		"parcel": "^1.12.4",
 		"serverless": "^1.65.0",
 		"serverless-stack-output": "^0.2.3"
