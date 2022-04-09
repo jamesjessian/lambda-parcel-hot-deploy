@@ -9,7 +9,7 @@
 	"dependencies": {
 		"node-file-eval": "^1.0.0",
 		"try-json": "^1.0.1",
-		"moment": "^2.24.0"
+		"moment": "^2.29.2"
 	},
 	"devDependencies": {
 		"aws-sdk": "^2.634.0",
